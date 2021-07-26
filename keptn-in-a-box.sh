@@ -116,7 +116,7 @@ source $FUNCTIONS_FILE
 # installationBundleKeptnOnly
 
 # - Comment out if selecting another bundle
-installationBundleDemo
+#installationBundleDemo
 
 # - Comment out if only want to install the Performance Clinic 'Why Devs love Dynatrace' Bundle
 #installationBundleDevLove
@@ -131,7 +131,7 @@ installationBundleDemo
 #installationBundleAll
 
 # - Uncomment below for installing a PerformanceAsAService Box
-#installationBundlePerformanceAsAService
+installationBundlePerformanceAsAService
 
 # ==================================================
 # ---- Enable or Disable specific functions -----  #
