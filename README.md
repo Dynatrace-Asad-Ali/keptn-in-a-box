@@ -1,76 +1,8 @@
 > **DISCLAIMER**: This project was developed for educational purposes only and is not complete, nor supported. It's publishment is only intended for helping others automate environments for delivering workshops with Keptn & Dynatrace. Even though the exposed endpoints of this cluster have valid SSL certificates generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.    
 
-> ## ***🥼⚗ Spend more time innovating and less time configuring***
 
-# Keptn-in-a-Box (with Dynatrace Software Intelligence empowered) 🎁
+ 
 
-Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
-
-A simple Bash script will set-up a fully functional Single Node Kubernetes Cluster with Dynatrace installed and Kubernetes Cluster, Cloud Applications and Events monitoring enabled. This script is used as [userdata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) when spinning up elastic compute images (ec2) in amazon web services, but it can run also manually in a Linux machine or VM with snap installed. The tested distro is  *Ubuntu Server 18.04 LTS & 20.04 LTS*
-For spinning up instances automatically with AWS completely configured and set up, and also automating the creation and management of Dynatrace environments, take a look at this project- [Dynatrace - Rest Tenant Automation](https://github.com/sergiohinojosa/Dynatrace-REST-Tenant-Automation) 
-
-
-![#](doc/keptn-in-a-box-autonomous-cloud-devops.gif)
-
-## 🥜Keptn-in-a-Box - Features in a Nutshell
-- Update the ubuntu repository
-- Installation of Docker (for building own Docker images)
-- Installation of Microkubernetes
-- Allow the Kube-API to run priviledged pods (necessary for deploying the FullStack Agent via Operator)
-- Update IPTABLES: allowing traffic for pods internal and external
-- Set up of useful BASH Aliases for working with the command line
-- Enable autocompletion of Kubectl
-- Installation of Dynatrace ActiveGate and configuration of [Cluster](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/connect-kubernetes-clusters-to-dynatrace/) and [Workload monitoring](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/monitor-workloads-kubernetes/)
-- Installation of Istio 1.9.1 
-- Installation of Helm Client
-- Enabling own Docker Registry for the Cluster
-- Convert the public IP in a (magic) domain ([nip.io](https://nip.io/)) for being able to expose all the needed services with subdomains.
-- Routing of traffic to Istio-Ingressgateway via a Kubernetes NGINX Ingress using standard HTTP(S) ports 80 and 443. This way we dont need a public IP from the Cloud Provider
-- Installation of Keptn (QualityGates also available)
-- Expose the Keptn-Bridge Service
-- Installation of Dynatrace OneAgent via Keptn
-- Deployment of Jenkins preconfigured und managed as code
-- Deployment of the Unleash-Server
-- Onboard of the Sockshop-Carts Sample project
-- Deployment of a cartsloadgenerator PoD
-- Deployment of a Autonomous Cloud teaser home page with links to the pipeline, kubernetes api, keptn-bridge, keptn-api, jenkins 
-- Creation of valid SSL certificates for the exposed endpoints with Certmanager and HTTPs Let's encrypt.
-- Gitea for hosting own git repositories
-- Create a user account and copy the standard user (ubuntu on this case) with his own home directory (a replica) and allowing SSH connections with text password. Useful for spinning an army of workshop clusters. 
-
-### 💻The Keptn-in-a-Box Bash installation
-
-<table>
-  <tr>
-    <td>
-    <p>
-    The bash file is scripted in a modular fashion allowing you with  control flags to enable or disable the modules that you want to install in your box. This allows you to have a very slim cluster running keptn with the bare minimal resources or to have a full blown cluster with pretty much all the desired features and frameworks for your CI/CD pipelines and performance testings.
-    <ol>
-    <li><a href="keptn-in-a-box.sh">keptn-in-a-box.sh</a></li>
-    <li><a href="functions.sh">functions.sh</a></li>
-    </ol>  
-    </p>
-    </td>
-    <td>
-      <img src="doc/keptn-in-a-box.png" width="700px" title="Keptn-in-a-Box"> 
-    </td>
-  </tr>
-</table>
-
-
-
-## 📚Tutorial
-For a step by step understanding of how Keptn-in-a-Box works and how to use it, take a look at the Keptn in a Box tutorial [https://tutorials.keptn.sh/tutorials/keptn-in-a-box/)](https://tutorials.keptn.sh/tutorials/keptn-in-a-box-08)
-
-
-## Prerequisites
-
-- [Ubuntu](https://ubuntu.com/#download) with internet connection (tested on 18.04 LTS and 20.04 LTS)
-
-#### (optional)
-- [A Dynatrace Tenant](https://www.dynatrace.com/trial/) 
-- AWS Account [Here you can get a free account](https://aws.amazon.com/free/)
-- You will get the most out of it if your DOMAIN is configured and reachable either by Dynatrace SaaS or Dynatrace Managed.
 
 ## Repository Structure
 ```bash
@@ -88,42 +20,6 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
   ├── misc                  Miscelaneous (patch kubernetes dashboard)
   └── istio                 YAML files for istio configuration 
 ```
-
-## 💾 Sizing
-
-This section will give you an idea the nedded size for your Box. But it all dependson the modules you want to install and what is your goal and usecase.
-The installer comes with 3 predefined modules: **minimal**, **default** and **full**. 
-
-### 🕐 Installation time
-From the testing in AWS minimal installation takes ~ 4 minutes to complete and full ~ 8 minutes. 
-
-### AWS sizings for reference 
-Below is a table for the sizing reference if you run a local VM or are virtualizing locally.
-
-| **Size**   | **vCPUs** | **Memory (GiB)** |
-| ---------- | --------- | ---------------- |
-| t2.medium  | 2         | 4                |
-| t2.large   | 2         | 8                |
-| t2.xlarge  | 4         | 16               |
-| t2.2xlarge | 8         | 32               |
-
-### installationBundleKeptnOnly
-The minimum required for running a Single Node Kubernetes cluster with keptn full features is a t2.medium (2 vCPU and 4 Gib of RAM) and 10 Gigabytes of disk space. If you feel frisky go for this size but the experience won't be the best. 
-
-Adding more RAM and more CPUs will speed up things. Depending what you want to achieve. Also consider that you'll have available less than 2 Gigs of disk space. This is the available disk after a minimal installation.
-
-```bash
-df -h /
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/root        20G  5.8G   14G  30% /
-```
-
-
-### installationBundleDemo
-The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
-
-### installationBundleAll
-The minimum required for running the default modules is t2.large with 13 Gigs of Disk space.We recommend 20 Gigs and t2.2xlarge for the best experience.
 
 ## Get started in 1 - 2 - 3
 
