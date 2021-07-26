@@ -19,7 +19,7 @@ KEPTN_DT_SERVICE_VERSION=0.15.1
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
-KEPTN_EXAMPLES_BRANCH="release-0.8.5"
+KEPTN_EXAMPLES_BRANCH="release-0.8.4"
 
 TEASER_IMAGE="shinojosa/kiab:0.8"
 MICROK8S_CHANNEL="1.19/stable"
