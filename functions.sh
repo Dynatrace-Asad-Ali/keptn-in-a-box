@@ -244,6 +244,7 @@ installationBundlePerformanceAsAService() {
   helm_install=true
   jenkins_deploy=true
   istio_install=true
+  dynatrace_configure_monitoring=true
   selected_bundle="installationBundlePerformanceAsAService"
 }
 
