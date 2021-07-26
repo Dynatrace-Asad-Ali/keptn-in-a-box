@@ -6,20 +6,20 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="release-0.8.3"
+KIAB_RELEASE="release-0.8.5"
 # Latest Istio is 1.8.2
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 
 
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.8.3
+KEPTN_VERSION=0.8.5
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.14.0
+KEPTN_DT_SERVICE_VERSION=0.15.1
 # https://github.com/keptn-contrib/dynatrace-sli-service
-KEPTN_DT_SLI_SERVICE_VERSION=0.11.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
-KEPTN_EXAMPLES_BRANCH="release-0.8.3"
+KEPTN_EXAMPLES_BRANCH="release-0.8.5"
 
 TEASER_IMAGE="shinojosa/kiab:0.8"
 MICROK8S_CHANNEL="1.19/stable"
@@ -243,7 +243,7 @@ installationBundlePerformanceAsAService() {
   # Jenkins needs Helm for the Chart to be installed
   helm_install=true
   jenkins_deploy=true
-
+  istio_install=true
   selected_bundle="installationBundlePerformanceAsAService"
 }
 
