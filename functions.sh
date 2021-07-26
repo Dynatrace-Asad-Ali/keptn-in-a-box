@@ -6,7 +6,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="release-0.8.5"
+KIAB_RELEASE="release-0.8.3"
 # Latest Istio is 1.8.2
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
